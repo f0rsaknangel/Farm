@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon Products - Mount Albert Eco Farm</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #f3ede2;
+      margin: 0;
+      padding: 0;
+      color: #4a3f35;
+    }
+    header, footer {
+      background-color: #7a9e7e;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    main {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .product {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      width: 250px;
+    }
+    .product img {
+      width: 100%;
+      border-radius: 4px;
+    }
+    .product h3 {
+      margin: 0.5rem 0;
+    }
+    .product button {
+      background-color: #4a3f35;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-top: 0.5rem;
+    }
+    .product button:hover {
+      background-color: #6d5c4f;
+    }
+    .checkout-link {
+      display: block;
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .checkout-link a {
+      background-color: #7a9e7e;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Coming Soon Products</h1>
+    <p>Shop our upcoming seasonal produce and farm goods</p>
+  </header>  <main>
+    <div class="products">
+      <div class="product">
+        <img src="honey.jpg" alt="Raw Local Honey">
+        <h3>Raw Local Honey</h3>
+        <p>$12.00 / jar</p>
+        <button onclick="addToCart('Raw Local Honey', 12.00)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="tomatoes.jpg" alt="Heirloom Tomatoes">
+        <h3>Heirloom Tomatoes</h3>
+        <p>$5.00 / basket</p>
+        <button onclick="addToCart('Heirloom Tomatoes', 5.00)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="bouquet.jpg" alt="Fresh Flower Bouquet">
+        <h3>Flower Bouquet</h3>
+        <p>$15.00 / bouquet</p>
+        <button onclick="addToCart('Flower Bouquet', 15.00)">Add to Cart</button>
+      </div>
+    </div><div class="checkout-link">
+  <a href="checkout.html">Proceed to Checkout</a>
+</div>
+
+  </main>  <footer>
+    <p>&copy; 2025 Mount Albert Eco Farm</p>
+  </footer>  <script>
+    function addToCart(item, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push({ item, price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(item + ' added to cart!');
+    }
+  </script></body>
+</html>
