@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout - Mount Albert Eco Farm</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #f3ede2;
+      margin: 0;
+      padding: 0;
+      color: #4a3f35;
+    }
+    header, footer {
+      background-color: #7a9e7e;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    main {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.5rem;
+    }
+    .cart-item span {
+      font-weight: bold;
+    }
+    .total {
+      font-size: 1.2rem;
+      text-align: right;
+      margin-top: 1rem;
+    }
+    .checkout-form {
+      margin-top: 2rem;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .checkout-form input, .checkout-form button {
+      display: block;
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 1rem;
+      border-radius: 4px;
+      border: 1px solid #aaa;
+    }
+    .checkout-form button {
+      background-color: #4a3f35;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .checkout-form button:hover {
+      background-color: #6d5c4f;
+    }
+    .clear-cart {
+      text-align: right;
+      margin-top: 1rem;
+    }
+    .clear-cart button {
+      background-color: #c44;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .clear-cart button:hover {
+      background-color: #a33;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Checkout</h1>
+    <p>Review your items and place your order</p>
+  </header>
+
+  <main>
+    <div id="cart"></div>
+
+    <div class="total" id="totalPrice">Total: $0.00</div>
+
+    <div class="clear-cart">
+      <button onclick="clearCart()">Clear Cart</button>
+    </div>
+
+    <form class="checkout-form" onsubmit="submitOrder(event)">
+      <h2>Customer Information</h2>
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="email" id="email" placeholder="Email Address" required>
+      <button type="submit">Place Order</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Mount Albert Eco Farm</p>
+  </footer>
+
+  <script>
+    function renderCart() {
+      const cartContainer = document.getElementById('cart');
+      const totalPriceEl = document.getElementById('totalPrice');
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      if (cart.length === 0) {
+        cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+        totalPriceEl.style.display = 'none';
+        return;
+      }
+
+      let cartHTML = '';
+      let total = 0;
+
+      cart.forEach(({ item, price }, index) => {
+        cartHTML += `
+          <div class="cart-item">
+            <div>${item}</div>
+            <div>$${price.toFixed(2)}</div>
+          </div>
+        `;
+        total += price;
+      });
+
+      cartContainer.innerHTML = cartHTML;
+      totalPriceEl.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    function clearCart() {
+      localStorage.removeItem('cart');
+      renderCart();
+      alert('Cart cleared.');
+    }
+
+    function submitOrder(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+
+      alert(`Thank you, ${name}! Your order has been received. A confirmation will be sent to ${email}.`);
+      
+      // Simulate order placement
+      localStorage.removeItem('cart');
+      window.location.href = 'index.html'; // Redirect to home or thank you page
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>
