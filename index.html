@@ -99,12 +99,13 @@
     <a class="button" href="#contact">Contact Us to Order</a>
   </section>  <section id="contact">
     <h2>Contact Us</h2>
-    <form action="#" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" rows="5" placeholder="Your Message"></textarea>
-      <button class="button" type="submit">Send Message</button>
-    </form>
+    <form name="contact" method="POST" data-netlify="true">
+  <input type="hidden" name="form-name" value="contact" />
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <textarea name="message" rows="5" placeholder="Your Message"></textarea>
+  <button class="button" type="submit">Send Message</button>
+</form>
     <p>Email: <a href="mailto:wang_mike25@hotmail.com">info@mountalbertecofarm.ca</a></p>
     <p>Location: Mount Albert, Ontario, Canada</p>
     <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 2rem;">
